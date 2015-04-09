@@ -174,7 +174,6 @@ for i=1:numel(demograph)
         fprintf(FILE_IN, '%s\n', temp); 
         temp=['Percent missing: Total ' num2str(sprintf('%.1f',n_p)) '%, Male ' num2str(sprintf('%.1f',m_p)) '%, Female ' num2str(sprintf('%.1f',f_p)) '%']; 
         fprintf(FILE_IN, '%s\n', temp); 
-        RACE=data_mat; 
         fprintf(FILE_IN, '\n'); 
         s4=n+numel(indx_total) 
         
@@ -221,8 +220,6 @@ for i=1:numel(demograph)
         fprintf(FILE_IN, '%s\n', temp); 
         temp=['Percent missing: Total ' num2str(sprintf('%.1f',n_p)) '%, Male ' num2str(sprintf('%.1f',m_p)) '%, Female ' num2str(sprintf('%.1f',f_p)) '%']; 
         fprintf(FILE_IN, '%s\n', temp); 
-        RACE=data_mat; 
-        fprintf(FILE_IN, '\n'); 
         s5=s+n
         EDUCATION=data_mat; 
         fprintf(FILE_IN, '\n'); 

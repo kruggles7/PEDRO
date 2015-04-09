@@ -18,6 +18,11 @@ for j=1:numel(indx_nan)
     data_mat{indx_nan(j)}=NaN; 
 end 
 data_mat=cell2mat(data_mat); 
+data_mat(data_mat==0)=NaN; 
+data_mat(data_mat==77)=NaN;
+data_mat(data_mat==88)=NaN;
+data_mat(data_mat==99)=NaN; 
+
 ages=data_mat; 
 mean_age=nanmean(ages); 
         
@@ -72,6 +77,12 @@ for j=1:numel(indx_nan)
     data_mat{indx_nan(j)}=NaN; 
 end 
 data_mat=cell2mat(data_mat); 
+
+%data_mat(data_mat==0)=NaN; 
+data_mat(data_mat==77)=NaN;
+data_mat(data_mat==88)=NaN;
+data_mat(data_mat==99)=NaN;
+
 heroin_ages=data_mat; 
 
 indx=find(heroin_ages>0); 
