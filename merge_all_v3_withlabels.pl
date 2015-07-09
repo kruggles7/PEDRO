@@ -71,6 +71,7 @@ if (opendir(dir,"$dir"))
 								{
 									my $temp_data=$data[$i]; 
 									my $head=$header[$i+1];
+									$head=~s/\s+//g; 
 									#print "$head\n";
 									if ($temp_data!~/\w/)
 									{

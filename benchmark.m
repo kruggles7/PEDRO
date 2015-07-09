@@ -1,4 +1,4 @@
-load filtered_db_2015_02_24
+load filtered_final_2015_05_06
 load GENDER
 load AGES
 
@@ -16,6 +16,21 @@ questions={'Benchmark_Note1/Benchmark_13', 'Benchmark_Note1/Benchmark_28', 'Benc
 [r,c]=size(filtered_final); 
 filtered_data=filtered_final(2:r,:); 
 headers=filtered_final(1,:); 
+
+inj='InjBehavior_Note1/InjBehavior_Note2/InjBehavior_1'; 
+indx=find(strcmp(headers,inj)==1); 
+data_mat=filtered_data(:,indx); 
+indx_nan=find(strcmp('NaN', data_mat)==1); 
+for j=1:numel(indx_nan)
+    data_mat{indx_nan(j)}=NaN; 
+end 
+data_mat=cell2mat(data_mat); 
+indx_inj=find(data_mat==1); 
+
+INJECTORS=filtered_data(indx_inj,:); 
+GENDER_=GENDER(indx_inj); 
+
+[r,c]=size(INJECTORS); 
 results=cell.empty; 
 results{1,1}='Question'; 
 results{1,2}='Code'; 
@@ -27,7 +42,7 @@ results{1,7}='95% CI';
 for j=1:11
     results{1,7+j}=['pvalue ' names{j}]; 
 end 
-total_N=numel(GENDER); 
+total_N=numel(GENDER_); 
 statmat=nan(total_N,11); 
 
 z=1.96; 
@@ -38,7 +53,7 @@ for i=1:numel(questions)
     results{i+1,2}=E; 
     
     if numel(indx)==1
-        data_mat=filtered_data(:,indx); 
+        data_mat=INJECTORS(:,indx); 
         indx_nan=find(strcmp('NaN', data_mat)==1); 
         for j=1:numel(indx_nan)
             data_mat{indx_nan(j)}=NaN; 

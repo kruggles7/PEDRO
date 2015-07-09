@@ -1,4 +1,4 @@
-load filtered_db_2015_02_24
+load filtered_final_2015_05_06
 FILE_IN=fopen('demographics.txt', 'wt'); 
 %1. DEMOGRAPHICS
 demograph={'Soc_Note1/Soc_10', 'Soc_Note1/Soc_3', 'Soc_Note1/Soc_5','Soc_Note1/Soc_4','Soc_Note1/Soc_19', 'Soc_Note1/Soc_22', 'Soc_Note1/Soc_23'};
@@ -57,9 +57,13 @@ for i=1:numel(demograph)
             temp=birth_date{j}; 
             new_temp=strrep(temp, '.', '/'); 
             BIRTH=strrep(new_temp, '-', '/'); 
-            numdays=datenum(TODAY)-datenum(BIRTH); 
-            numyears=numdays/365; 
-            ages(j)=numyears; 
+            if isnan(BIRTH)==0
+                numdays=datenum(TODAY)-datenum(BIRTH); 
+                numyears=numdays/365; 
+                ages(j)=numyears; 
+            else
+                ages(j)=NaN; 
+            end 
         end 
         AGES=ages; 
         
